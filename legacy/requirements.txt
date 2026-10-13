@@ -1,0 +1,3 @@
+assemblyai
+sounddevice
+openai

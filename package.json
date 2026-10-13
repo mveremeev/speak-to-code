@@ -1,0 +1,14 @@
+{
+  "name": "speak-to-code",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.0.6",
+    "assemblyai": "^4.35.0",
+    "hono": "^4.12.27"
+  }
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speak to code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="toolbar">
+      <span id="filename">draft.py</span>
+      <select id="lang-select"></select>
+      <select id="model-select" title="Which model formats your dictation"></select>
+      <label id="effort" hidden>
+        <input type="range" id="effort-range" min="0" max="3" step="1" />
+        <span id="effort-label"></span>
+      </label>
+      <button id="open-btn">Open</button>
+      <button id="save-btn">Save</button>
+      <button id="saveas-btn">Save As</button>
+      <input type="file" id="file-picker" hidden accept=".py,.js,.ts,.go,.rs,.java,.c,.cpp,.rb,.sh,.txt,.md,.json,.html,.css" />
+    </div>
+
+    <textarea id="code"></textarea>
+
+    <div id="mic-progress"></div>
+    <button id="mic" title="Click to record, click again to stop">
+      <span class="icon icon-mic"></span>
+      <span class="waiting">...</span>
+      <span class="icon icon-stop"></span>
+    </button>
+
+    <form id="type-bar">
+      <input
+        id="typed"
+        type="text"
+        enterkeyhint="send"
+        autocomplete="off"
+        placeholder="In a quiet place? Type here."
+      />
+      <button id="typed-send" type="submit" title="Send" aria-label="Send">
+        <span class="icon icon-send"></span>
+      </button>
+    </form>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/rust/rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/ruby/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/shell/shell.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/markdown/markdown.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

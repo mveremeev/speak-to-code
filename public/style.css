@@ -1,0 +1,246 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #282a36;
+}
+
+.CodeMirror {
+  height: calc(100vh - 36px);
+  font-size: 14px;
+}
+
+#toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 12px;
+  background: #1e1f29;
+  border-bottom: 1px solid #444;
+  font: 13px/1 sans-serif;
+  user-select: none;
+}
+
+#filename {
+  color: #f8f8f2;
+}
+
+#lang-select,
+#model-select {
+  background: transparent;
+  color: #888;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+#effort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #888;
+  margin-right: auto; /* last item on the left cluster */
+}
+
+#effort[hidden] {
+  display: none;
+}
+
+#effort-range {
+  width: 64px;
+  accent-color: #bd93f9;
+  cursor: pointer;
+}
+
+/* Widest label ("minimal") sets the width, so the toolbar doesn't jitter as
+   the slider moves between stops. */
+#effort-label {
+  min-width: 48px;
+}
+
+#lang-select:hover,
+#model-select:hover {
+  color: #f8f8f2;
+}
+
+#lang-select option,
+#model-select option {
+  background: #1e1f29;
+  color: #f8f8f2;
+}
+
+#toolbar button {
+  background: #444;
+  color: #f8f8f2;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font: inherit;
+}
+
+#toolbar button:hover {
+  background: #555;
+}
+
+#mic {
+  position: fixed;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #e0245e;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+#mic:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#type-bar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+#typed {
+  width: 240px;
+  padding: 8px 12px;
+  background: #21222c;
+  color: #f8f8f2;
+  border: 1px solid #44475a;
+  border-radius: 16px;
+  font: 13px/1.4 sans-serif;
+  text-align: center;
+  outline: none;
+}
+
+#typed::placeholder {
+  color: #6272a4;
+}
+
+#typed:focus {
+  border-color: #bd93f9;
+}
+
+#typed-send {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #bd93f9;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mask-based icons: the SVG shape is the mask, background-color is the colour. */
+.icon {
+  display: inline-block;
+  -webkit-mask: center / contain no-repeat;
+  mask: center / contain no-repeat;
+}
+
+.icon-mic {
+  -webkit-mask-image: url("/icons/mic.svg");
+  mask-image: url("/icons/mic.svg");
+}
+
+.icon-stop {
+  -webkit-mask-image: url("/icons/square.svg");
+  mask-image: url("/icons/square.svg");
+}
+
+.icon-send {
+  -webkit-mask-image: url("/icons/send.svg");
+  mask-image: url("/icons/send.svg");
+}
+
+#mic .icon {
+  width: 26px;
+  height: 26px;
+  background-color: #fff;
+}
+
+#mic .icon-stop {
+  width: 22px;
+  height: 22px;
+  display: none;
+}
+
+#typed-send .icon {
+  width: 18px;
+  height: 18px;
+  background-color: #21222c;
+  transform: translate(-1px, 1px); /* optically centre the paper-plane glyph */
+}
+
+#mic .waiting {
+  display: none;
+  color: #fff;
+  font: bold 22px/1 sans-serif;
+}
+
+/* Idle shows the mic; waiting shows "..."; recording shows the stop square. */
+#mic.waiting .icon-mic,
+#mic.waiting .icon-stop {
+  display: none;
+}
+
+#mic.waiting .waiting {
+  display: block;
+}
+
+#mic.recording .icon-mic {
+  display: none;
+}
+
+#mic.recording .icon-stop {
+  display: inline-block;
+}
+
+#mic-progress {
+  position: fixed;
+  bottom: 152px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f8f8f2;
+  font: 14px/1.4 sans-serif;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  z-index: 10;
+}
+
+#mic-progress.visible {
+  opacity: 1;
+}
+
+/* The "selecting" sweep before an edit lands (Dracula selection blue). */
+.CodeMirror .selecting {
+  background: rgba(98, 114, 164, 0.5);
+}
+
+/* The fading flash on lines that just changed (Dracula green). */
+.CodeMirror .edited {
+  background: rgba(80, 250, 123, 0.16);
+  transition: background 350ms ease;
+}
